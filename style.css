@@ -1,11 +1,3 @@
-*,
-*::before,
-*::after {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
 :root {
     --backColorBlack: #091c25;
     --lightColor: #d1dae3;
@@ -13,13 +5,6 @@
     --calculator: #132746;
     --hover: #0d2c3a;
 }
-
-body {
-    background: var(--backColorBlack);
-    font-family: "JetBrains Mono";
-    color: var(--lightColor);
-}
-
 .date-picker {
     position: relative;
     width: 100%;
@@ -31,6 +16,9 @@ body {
         1px 1px 2px rgba(0, 0, 0, 1);
     cursor: pointer;
     user-select: none;
+    font-family: 'JetBrains Mono';
+    display: inline-block;
+    margin: 3rem 1rem;
 }
 
 .date-picker .label {
@@ -143,7 +131,6 @@ cursor: pointer;
 
 .weeks {
     display: grid;
-
     grid-template-columns: repeat(7, 1fr);
 }
 
@@ -156,7 +143,9 @@ cursor: pointer;
         3px 3px 2px rgba(0, 0, 0, 1);
 
 }
-
+.weeksName:first-child{
+    background-color: red;
+}
 .days {
     display: grid;
     grid-gap: 0.7rem;
@@ -172,7 +161,9 @@ cursor: pointer;
     text-align: center;
     width: 100%;
 }
-
+.day:nth-child(7n+1){
+    background-color: red;
+}
 .day:hover {
     background: rgba(0, 90, 120, 0.7);
     box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.5),
