@@ -1,0 +1,215 @@
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --backColorBlack: #091c25;
+    --lightColor: #d1dae3;
+    --backColor: #ecf0f3;
+    --calculator: #132746;
+    --hover: #0d2c3a;
+}
+
+body {
+    background: var(--backColorBlack);
+    font-family: "JetBrains Mono";
+    color: var(--lightColor);
+}
+
+.date-picker {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: 30px auto;
+    height: 50px;
+    background: var(--backColorBlack);
+    box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.5),
+        1px 1px 2px rgba(0, 0, 0, 1);
+    cursor: pointer;
+    user-select: none;
+}
+
+.date-picker .label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 20px;
+    height: 100%;
+    width: 100%;
+
+}
+
+.label:hover {
+    box-shadow: inset -5px -5px 12px rgba(255, 255, 255, 0.1),
+        inset 5px 5px 12px rgba(0, 0, 0, 1);
+    color: transparent;
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.7),
+        0 0 #000,
+        2px 2px 1px #06161e,
+        -2px -2px 1px #06161e,
+        0px 0px 1px #06161e;
+}
+
+.today-date {
+    margin: 5px auto;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 0.3rem;
+    box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.5),
+        1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+.inner-table {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--backColorBlack);
+    display: none;
+    user-select: none;
+    cursor: auto;
+    perspective: 10000px;
+    transform-origin: top center;
+
+}
+
+.inner-table.active {
+cursor: pointer;
+    animation: opening 1s ease-in-out forwards;
+    display: block;
+}
+
+@keyframes opening {
+    0% {
+        opacity: 0;
+        transform: rotateX(-90deg);
+    }
+
+    60% {
+        transform: rotateX(50deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+}
+
+.months {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.arrows {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 35px;
+    font-size: 20px;
+    margin: 5px;
+    font-weight: 800;
+    border-radius: 5px;
+}
+
+.arrows:hover {
+    background: var(--calculator);
+}
+
+.arrows:active {
+    background: #06161e;
+    box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 0.5),
+        inset 5px 5px 12px rgba(0, 0, 0, 0.5);
+}
+
+.calender-table {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: var(--backColorBlack);
+    box-shadow: inset -5px -5px 12px rgba(255, 255, 255, 0.1),
+        inset 5px 5px 12px rgba(0, 0, 0, 1);
+}
+
+.weeks {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.weeksName {
+    margin: 10px auto;
+    padding: 0 0 5px 0;
+    box-shadow: inset -1px -1px 2px rgba(255, 255, 255, 0.2),
+        inset 1px 1px 2px rgba(0, 0, 0, 1),
+        -1px -1px 2px rgba(255, 255, 255, 0.2),
+        3px 3px 2px rgba(0, 0, 0, 1);
+
+}
+
+.days {
+    display: grid;
+    grid-gap: 0.7rem;
+    margin: auto 5px;
+    place-items: center;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.day {
+    background: var(--backColorBlack);
+    box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.5),
+        3px 3px 12px rgba(0, 0, 0, 1);
+    text-align: center;
+    width: 100%;
+}
+
+.day:hover {
+    background: rgba(0, 90, 120, 0.7);
+    box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.5),
+        1px 1px 2px rgba(0, 0, 0, 1),
+        -1px -1px 2px rgba(0, 0, 0, 1),
+        1px 1px 2px rgba(0, 0, 0, 1);
+    font-weight: 900;
+    font-style: italic;
+}
+
+.day:active {
+    background: #06161e;
+    box-shadow: inset -1px -1px 2px rgba(255, 255, 255, 0.2),
+        inset 1px 1px 2px rgba(0, 0, 0, 0.5),
+        inset -1px -1px 2px rgba(255, 255, 255, 0.2),
+        inset 3px 3px 2px rgba(0, 0, 0, 0.5);
+}
+
+.currentDate {
+    background: rgba(0, 90, 120, 0.7);
+    box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.5),
+        1px 1px 2px rgba(0, 0, 0, 1),
+        -1px -1px 12px rgba(0, 0, 0, 1),
+        3px 3px 2px rgba(0, 0, 0, 1);
+    font-weight: 900;
+    font-style: italic;
+}
+
+.prev-dates,
+.next-date {
+    box-shadow: inset -1px -1px 2px rgba(255, 255, 255, 0.2),
+        inset 1px 1px 2px rgba(0, 0, 0, 1),
+        inset -1px -1px 2px rgba(255, 255, 255, 0.2),
+        inset 3px 3px 2px rgba(0, 0, 0, 1);
+    color: #5a6270;
+    width: 100%;
+    text-align: center;
+    cursor: auto;
+    user-select: none;
+}
